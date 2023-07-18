@@ -127,6 +127,8 @@ public class TeleOp0 extends LinearOpMode {
                 spinnerDrive.setPower(1);
             }else if(gamepad1.dpad_right){
                 spinnerDrive.setPower(-1);
+            }else{
+                spinnerDrive.setPower(0);
             }
             // Normalize the values so no wheel power exceeds 100%
             // This ensures that the robot maintains the desired motion.
