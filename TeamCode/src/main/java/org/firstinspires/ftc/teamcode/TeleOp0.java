@@ -72,6 +72,7 @@ public class TeleOp0 extends LinearOpMode {
     private DcMotor leftBackDrive = null;
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
+    private DcMotor spinnerDrive = null;
 
     @Override
     public void runOpMode() {
@@ -82,6 +83,7 @@ public class TeleOp0 extends LinearOpMode {
         leftBackDrive  = hardwareMap.get(DcMotor.class, "left_back_drive");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "right_front_drive");
         rightBackDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
+        spinnerDrive = hardwareMap.get(DcMotor.class, "spinner_drive");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -121,6 +123,11 @@ public class TeleOp0 extends LinearOpMode {
             double leftBackPower   = axial - lateral + yaw;
             double rightBackPower  = axial + lateral - yaw;
 
+            if (gamepad1.dpad_left){
+                spinnerDrive.setPower(1);
+            }else if(gamepad1.dpad_right){
+                spinnerDrive.setPower(-1);
+            }
             // Normalize the values so no wheel power exceeds 100%
             // This ensures that the robot maintains the desired motion.
             max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
